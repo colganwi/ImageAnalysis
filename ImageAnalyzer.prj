@@ -1,0 +1,74 @@
+<deployment-project plugin="plugin.apptool" plugin-version="1.0">
+  <configuration build-checksum="3338445900" file="/Users/cionalab/Desktop/William/MATLAB/CellAnalysis.prj" location="/Users/cionalab/Desktop/William/MATLAB" name="CellAnalysis" target="target.mlapps" target-name="Package App">
+    <param.appname>CellAnalysis</param.appname>
+    <param.authnamewatermark>William Colgan</param.authnamewatermark>
+    <param.email>colgan.william@gmail.com</param.email>
+    <param.company>Swarthmore Developemtal Biology Lab</param.company>
+    <param.icon />
+    <param.icons />
+    <param.summary />
+    <param.description />
+    <param.screenshot />
+    <param.version>1.0</param.version>
+    <param.products.name />
+    <param.products.id />
+    <param.products.version />
+    <param.platforms />
+    <param.output>/Users/cionalab/Desktop/William/MATLAB</param.output>
+    <param.guid>901a2b3a-9135-4806-9076-dd2223e92097</param.guid>
+    <unset>
+      <param.icon />
+      <param.icons />
+      <param.summary />
+      <param.description />
+      <param.screenshot />
+      <param.version />
+      <param.products.name />
+      <param.products.id />
+      <param.products.version />
+      <param.platforms />
+      <param.output />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}/CellAnalysis.mlapp</file>
+    </fileset.main>
+    <fileset.depfun>
+      <file>${PROJECT_ROOT}/getmembrane.m</file>
+      <file>${PROJECT_ROOT}/getvesicles.m</file>
+      <file>${PROJECT_ROOT}/loadtif.m</file>
+      <file>${PROJECT_ROOT}/pearson.m</file>
+    </fileset.depfun>
+    <fileset.resources />
+    <fileset.package />
+    <build-deliverables>
+      <file location="/Users/cionalab/Desktop/William" name="MATLAB" optional="false">/Users/cionalab/Desktop/William/MATLAB</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>/Applications/MATLAB_R2016b.app</root>
+      <toolboxes>
+        <toolbox name="matlabcoder" />
+      </toolboxes>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>true</unix>
+      <mac>true</mac>
+      <windows>false</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>10.11.5</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>maci64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>
