@@ -1,4 +1,4 @@
-function [vesicles, vesstats] = getVesicles(C1,cellMask,varargin)
+function [vesicles, vesstats] = thresholdvesicles(C1,cellMask,varargin)
 % This function efficiently segments a 2D image. It returns a bianry mask
 % where 1 is in the cell and 0 is outside of the cell. It uses
 % thresholding.

@@ -5,7 +5,7 @@ C1 = data{1,1};
 radius = min(x,y);
 radius = double(round(radius*.4));
 mask = zeros(x,y,z);
-for i = 3:z-3
+for i = 4:z-4
     plane = zeros(x,y);
     plane(round(x/2),round(y/2)) = 1; 
     r = radius * sqrt(1 - ((z/2-i)/(z/2))^2);
@@ -19,7 +19,7 @@ mask(:,:,1) = 1;
 mask(x,:,:) = 1;
 mask(:,y,:) = 1;
 mask(:,:,z) = 1;
-C1 = imgaussfilt3(C1,[1.5,1.5,1]);
+R = imgaussfilt3(C1,[2,2,.5]);
 %R = ridges3D(C1,2);
 %R = CoherenceFilter(C1,struct('T',3,'rho',10,'Scheme','S'));
 R = imimposemin(C1,mask);
@@ -31,14 +31,14 @@ p.EdgeColor = 'none';
 camlight;
 lighting phong;
 for i = 1:z
-    c1 = R(:,:,i);
+    c1 = C1(:,:,i);
     l = L(:,:,i);
     Lrgb = label2rgb(l, 'jet', 'w', 'shuffle');
     figure
     imshow(c1)
     hold on
     himage = imshow(Lrgb);
-    himage.AlphaData = 0.1;
+    himage.AlphaData = 0.2;
 end
 
 % SE = strel('disk',radius,8);
