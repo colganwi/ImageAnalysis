@@ -4,15 +4,18 @@
 %Date: 3/21/17
 %Contact: colgan.william@gmail.com
 
-%Get image file our specify filename
-filename = uigetfile('*.tif');
-%Do analysis for the image
-[colocalization] = imageAnalysis(filename);
-%Save as excel file
-filename = string(filename);
-T = table(filename,colocalization);
-fileout = 'analysis.xlsx';
-writetable(T,fileout,'Sheet',1,'Range','A1');
+[C1,C2,C3,voxelSize] = loadtif3('test1.tif');
+cellMask = approximatecell(C1);
+cellMask = watershedcell(C1,cellMask);
+[vesicles, vesstats] = thresholdvesicles(C1,cellMask,.5,.5,2);
+figure;
+p = patch(isosurface(cellMask));
+p.FaceColor = 'red';
+p.EdgeColor = 'none';
+camlight;
+lighting phong;
+
+
 
 
 

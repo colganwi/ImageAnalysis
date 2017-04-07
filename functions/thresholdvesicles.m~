@@ -1,0 +1,26 @@
+function [vesicles, vesstats] = thresholdvesicles(C1,cellMask,threshLevel,vesSize)
+%This function returns a 3D binary matrix where the vesicles are ones and 
+%the statistics for the vesicles that have been found. It only finds
+%vesicles in the cell mask and the threshold level and size can be specified.
+%thresLevel can be between 0 and 1, vesSize must be greater than 0. 
+% 
+%   [vesicles, vesstats] = thresholdvesicles(C1,cellMask)
+%   [vesicles, vesstats] = thresholdvesicles(C1,cellMask,threshLevel)
+%   [vesicles, vesstats] = thresholdvesicles(C1,cellMask,threshLevel,vesSize)
+%
+%Author: William Colgan
+%Date: 4/5/17
+%Contact: colgan.william@gmail.com
+
+vesicles = C1.*cellMask;
+total = sum(sum(sum(vesicles)))/sum(sum(sum
+%thresh = multithresh(vesicles)*threshLevel*5;
+thresh = threshLevel;
+vesicles = imgaussfilt3(vesicles,2);
+vesicles(vesicles > thresh) = 1;
+vesicles(vesicles <= thresh) = 0;
+vesicles = imfill(vesicles);
+vesicles = bwareaopen(vesicles,round(vesSize*10000));
+L = bwlabeln(vesicles);
+vesstats = regionprops(L);
+end

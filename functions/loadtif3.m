@@ -17,14 +17,15 @@ y = info.Width;
 z = size(info,1)/3;
 
 %get voxel size
-xRes = info.XResolution;
-xSize = 1/xRes;
-yRes = info.YResolution;
-ySize = 1/yRes;
-description = info.ImageDescription;
-i = strfind(description,'spacing');
-zSize = str2double(description(i+8:i+16));
-voxelSize = [xSize,ySize,zSize];
+% xRes = info.XResolution;
+% xSize = 1/xRes;
+% yRes = info.YResolution;
+% ySize = 1/yRes;
+% description = info.ImageDescription;
+% i = strfind(description,'spacing');
+% zSize = str2double(description(i+8:i+16));
+% voxelSize = [xSize,ySize,zSize];
+voxelSize = 0;
 
 %creat matrices for each channel
 C1 = zeros(x,y,z,'double');

@@ -1,40 +1,21 @@
-function [vesicles, vesstats] = thresholdvesicles(C1,cellMask,varargin)
-% This function efficiently segments a 2D image. It returns a bianry mask
-% where 1 is in the cell and 0 is outside of the cell. It uses
-% thresholding.
+function [vesicles, vesstats] = thresholdvesicles(C1,cellMask,threshLevel,vesSize,sigma)
+%This function returns a 3D binary matrix where the vesicles are ones and 
+%the statistics for the vesicles that have been found. It only finds
+%vesicles in the cell mask and the threshold level and size can be specified.
+%thresLevel can be between 0 and 1, vesSize must be greater than 0. 
+% 
+%   [vesicles, vesstats] = thresholdvesicles(C1,cellMask,threshLevel,vesSize,sigma)
 %
 %Author: William Colgan
-%Date: 2/14/17
+%Date: 4/5/17
 %Contact: colgan.william@gmail.com
 
-%get peramiters
-if size(varargin) == 1
-    threshLevel = varargin{1};
-    vesSize = .5;
-elseif size(varargin) == 2
-    threshLevel = varargin{1};
-    vesSize = varargin{2};
-else
-    threshLevel = .5;
-    vesSize = .5;
-end
-
-x = size(C1,1);
-y = size(C1,2);
-z = size(C1,3);
-vesicles = zeros(x,y,z,'double');
-C2 = C1.*cellMask;
-
-thresh = multithresh(C2)*threshLevel;
-
-for i = 1:z
-    I = C2(:,:,i);
-    I2 = imgaussfilt(I,[1 1]);
-    I3 = im2bw(I2,10*thresh);
-    I4 = imfill(I3, 'holes');
-    I5 = bwareaopen(I4,round(10*vesSize));
-    vesicles(:,:,i) = I5;
-end
-L = bwlabeln(C2);
+vesicles = C1.*cellMask;
+thresh = threshLevel;
+vesicles = imgaussfilt3(vesicles,sigma);
+vesicles = double(vesicles > thresh);
+vesicles = imfill(vesicles);
+vesicles = bwareaopen(vesicles,round(vesSize));
+L = bwlabeln(vesicles);
 vesstats = regionprops(L);
 end
