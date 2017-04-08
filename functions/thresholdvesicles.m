@@ -10,12 +10,12 @@ function [vesicles, vesstats] = thresholdvesicles(C1,cellMask,threshLevel,vesSiz
 %Date: 4/5/17
 %Contact: colgan.william@gmail.com
 
-vesicles = C1.*cellMask;
-thresh = threshLevel;
-vesicles = imgaussfilt3(vesicles,sigma);
-vesicles = double(vesicles > thresh);
-vesicles = imfill(vesicles);
-vesicles = bwareaopen(vesicles,round(vesSize));
+vesicles = C1.*cellMask; %select only mask
+thresh = threshLevel; %set thresh
+vesicles = imgaussfilt3(vesicles,sigma); %apply guassian filter
+vesicles = double(vesicles > thresh); %threshold image
+vesicles = imfill(vesicles); %fill in holes
+vesicles = bwareaopen(vesicles,round(vesSize)); %delete small vesicles
 L = bwlabeln(vesicles);
-vesstats = regionprops(L);
+vesstats = regionprops(L); %get properties
 end

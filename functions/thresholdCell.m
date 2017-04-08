@@ -1,4 +1,4 @@
-function cellMask = thresholdcell(C1,threshLevel,Sigma)
+function cellMask = thresholdcell(C1,threshLevel,sigma)
 %This function thresholds a 3D image to segment the cell. It returns a
 %binary mask of type double where 1 is in the cell and 0 is outside of 
 %the cell. The threshLevel can go from 0 to 2.
@@ -16,7 +16,7 @@ thresh = multithresh(C1)*threshLevel*2; %set threshold
 %for threshold each plane
 for i = 1:size(C1,3)
     P = C1(:,:,i); %get plane i
-    P = imgaussfilt(P,Sigma); %apply gaussfilt
+    P = imgaussfilt(P,sigma); %apply gaussfilt
     P = double(P>thresh); %threshold
     SE = strel('diamond',10);
     P = imdilate(P, SE); %dilate to close gaps

@@ -1,26 +1,26 @@
 function cellMask = approximatecell(C1)
-%This function thresholds a 3D image to segment the cell. It returns a
-%binary mask of type double where 1 is in the cell and 0 is outside of 
-%the cell. The threshLevel can go from 0 to 2.
+%This function returns an approximate cell mask. It is a sphere centered at
+%the center of the image.
 %
-%   cellMask = thresholdcell(C1)
-%   cellMask = thresholdcell(C1,1.5) 
+%   cellMask = approcimatecell(C1)
 %
 %Author: William Colgan
-%Date: 4/4/17
+%Date: 4/8/17
 %Contact: colgan.william@gmail.com
 
+%calculate radius and make cell mask
 [x,y,z] = size(C1);
-radius = min(x,y);
-radius = double(round(radius*.45));
+radius = double(round(min(x,y)*.45));
 cellMask = zeros(x,y,z);
-for i = 2:z-2
-    P = zeros(x,y);
-    P(round(x/2),round(y/2)) = 1; 
-    r = radius * sqrt(1 - ((z/2-i)/(z/2))^2);
-    SE = strel('disk',double(round(r)),8);
-    P = imdilate(P, SE);
-    cellMask(:,:,i) = P;
+
+%for each plane
+for i = 3:z-3
+    P = zeros(x,y); 
+    P(round(x/2),round(y/2)) = 1; %set center to 1
+    r = radius * sqrt(1 - ((z/2-i)/(z/2))^2); %calculate r for the plane
+    SE = strel('disk',double(round(r)),8); %create a disk structural element
+    P = imdilate(P, SE); %dilate to sphere
+    cellMask(:,:,i) = P; %set cell mask plane
 end
 
 end

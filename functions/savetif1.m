@@ -1,7 +1,7 @@
 function savetif1(C1,filename)
 %This funciton saves a 1 channel tif image.
 %
-%   savetif1(C1,'test.tif')
+%   savetif1(C1,filename)
 %
 %Author: William Colgan
 %Date: 4/4/17

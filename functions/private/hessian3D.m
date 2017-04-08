@@ -18,7 +18,7 @@ function [Dxx, Dyy, Dzz, Dxy, Dxz, Dyz] = hessian3D(Volume,Sigma)
 if nargin < 2, Sigma = 1; end
 
 if(Sigma>0)
-    F=imgaussian(Volume,Sigma);
+    F=imgaussfilt3(Volume,Sigma);
 else
     F=Volume;
 end
