@@ -1,9 +1,9 @@
-function cellMask = thresholdcell(C1,threshLevel,sigma)
+function cellMask = thresholdcell(C1,thresh,sigma)
 %This function thresholds a 3D image to segment the cell. It returns a
 %binary mask of type double where 1 is in the cell and 0 is outside of 
 %the cell. The threshLevel can go from 0 to 2.
 %
-%   cellMask = thresholdcell(C1,1.5) 
+%   cellMask = thresholdcell(C1,thresh,sigma) 
 %
 %Author: William Colgan
 %Date: 4/4/17
@@ -11,7 +11,7 @@ function cellMask = thresholdcell(C1,threshLevel,sigma)
 
 %make new channel and set threshold
 C2 = zeros(size(C1),'double'); %make a new image
-thresh = multithresh(C1)*threshLevel*2; %set threshold
+thresh = multithresh(C1)*thresh*2; %set threshold
 
 %for threshold each plane
 for i = 1:size(C1,3)

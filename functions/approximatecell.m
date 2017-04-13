@@ -1,4 +1,4 @@
-function cellMask = approximatecell(C1)
+function cellMask = approximatecell(C1,radius)
 %This function returns an approximate cell mask. It is a sphere centered at
 %the center of the image.
 %
@@ -10,7 +10,7 @@ function cellMask = approximatecell(C1)
 
 %calculate radius and make cell mask
 [x,y,z] = size(C1);
-radius = double(round(min(x,y)*.45));
+radius = double(round(min(x,y)*radius*.5));
 cellMask = zeros(x,y,z);
 
 %for each plane

@@ -1,8 +1,8 @@
 %This program can be used to automate analysis of mutiple image files
 
-[C1,C2,C3,voxelSize] = loadtif3('test.tif');
-cellMask = thresholdcell(C2,.6,2);
-[vesicles, vesstats] = thresholdvesicles(C2,cellMask,.23,10,1);
+[C1,C2,C3,voxelSize] = loadtif3('FGFR-Venus and Rab11-CLIP with CyB MD 04-09-2017.lif - CyB E1.tif');
+cellMask = thresholdcell(C3,.4,2);
+[vesicles, vesstats] = thresholdvesicles(C1,cellMask,.25,10,1);
 vesstats = getdistance(cellMask,vesstats,voxelSize);
 
 %visualize results

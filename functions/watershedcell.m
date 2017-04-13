@@ -23,7 +23,7 @@ outside(x,:,:) = 1;
 outside(:,y,:) = 1;
 outside(:,:,z) = 1;
 
-C1 = imgaussfilt3(C1,sigma); %apply gaussian filter
+C1 = imgaussfilt3(C1,[sigma,sigma,1]); %apply gaussian filter
 R = inside + outside; %set R to inside and outside
 R = imimposemin(C1,R); %make R local minimum for watershed
 L = watershed(R); %watershed

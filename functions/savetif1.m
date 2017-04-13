@@ -9,7 +9,7 @@ function savetif1(C1,filename)
 
 %for each plane
 for i = 1:size(C1,3)
-   imwrite(C1(:,:,i),filename,'tif', 'WriteMode', 'append');
+   imwrite(C1(:,:,i),filename,'tif', 'WriteMode', 'append','Compression','none');
 end
 
 end
