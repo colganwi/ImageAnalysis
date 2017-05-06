@@ -17,6 +17,8 @@ x = info.Height;
 y = info.Width;
 z = size(info,1)/3;
 
+%brightness
+brightness = 16;
 %get voxel size
 xRes = info.XResolution;
 if isempty(xRes) %if it does not have resolution
@@ -29,6 +31,10 @@ else
     i = strfind(description,'spacing');
     zSize = str2double(description(i+8:i+16));
     voxelSize = [xSize,ySize,zSize];
+    i = strfind(description,'max');
+    if(str2double(description(i+4:i+8)) ~= 4095)
+        brightness = 16;
+    end 
 end
 
 %creat matrices for each channel
@@ -38,8 +44,8 @@ C3 = zeros(x,y,z,'double');
 
 %for each plane
 for i = 1:z
-   C1(:,:,i) = im2double(imread(filename,3*i-2));
-   C2(:,:,i) = im2double(imread(filename,3*i-1));
-   C3(:,:,i) = im2double(imread(filename,3*i));
+   C2(:,:,i) = im2double(imread(filename,3*i-2)).*brightness;
+   C3(:,:,i) = im2double(imread(filename,3*i-1)).*brightness;
+   C1(:,:,i) = im2double(imread(filename,3*i)).*brightness;
 end
 end

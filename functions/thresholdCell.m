@@ -15,20 +15,27 @@ thresh = multithresh(C1)*thresh*2; %set threshold
 
 %for threshold each plane
 for i = 1:size(C1,3)
-    P = C1(:,:,i); %get plane i
+    P = C1(:,:,i);
+    if(sigma > 0)
     P = imgaussfilt(P,sigma); %apply gaussfilt
+    end
     P = double(P>thresh); %threshold
     SE = strel('diamond',10);
     P = imdilate(P, SE); %dilate to close gaps
+    [x,y] = size(P);
+    P(1,:) = 0;
+    P(:,1) = 0;
+    P(:,y) = 0;
+    P(x,:) = 0;
     P = imfill(P, 'holes'); %fill holes
     P = imerode(P,SE); %undo dilation
     C2(:,:,i) = P;
 end
 
-%select largest region
-L = bwlabeln(C2); %label regions
-stats = regionprops(L); %get region properties
-[M,i] = max(cat(1,stats.Area)); %find largest region
-cellMask = (L == i); %include only largest region
-
+[x,y,z] = size(C2);
+i = C2(round(x/2),round(y/2),round(z/2));
+cellMask = double(C2 == i);
+SE = strel('sphere',5);
+cellMask  = imdilate(cellMask, SE);
+cellMask = imerode(cellMask,SE);
 end

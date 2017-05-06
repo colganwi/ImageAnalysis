@@ -10,17 +10,18 @@ function cellMask = approximatecell(C1,radius)
 
 %calculate radius and make cell mask
 [x,y,z] = size(C1);
-radius = double(round(min(x,y)*radius*.5));
+a = round(min(x,y)*radius*.5);
+b = round(z*radius*.5);
 cellMask = zeros(x,y,z);
 
 %for each plane
-for i = 3:z-3
+for i = -b:b
     P = zeros(x,y); 
     P(round(x/2),round(y/2)) = 1; %set center to 1
-    r = radius * sqrt(1 - ((z/2-i)/(z/2))^2); %calculate r for the plane
+    r = sqrt(a^2*(1-i^2/b^2)); %calculate r for the plane
     SE = strel('disk',double(round(r)),8); %create a disk structural element
     P = imdilate(P, SE); %dilate to sphere
-    cellMask(:,:,i) = P; %set cell mask plane
+    cellMask(:,:,i+round(z/2)) = P; %set cell mask plane
 end
 
 end

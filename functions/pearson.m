@@ -13,18 +13,19 @@ I1 = C1.*cellMask;
 I2 = C2.*cellMask;
 
 %get the mean for each channel
-mean1 = mean(mean(mean(I1)));
-mean2 = mean(mean(mean(I2)));
+mean1 = sum(sum(sum(I1)))/sum(sum(sum(cellMask)));
+mean2 = sum(sum(sum(I2)))/sum(sum(sum(cellMask)));
 
 %get the covariance of the channels
+
 covariance = sum(sum(sum((I1-mean1).*(I2-mean2).*cellMask)));
 
 %get the standard deveation of each channel
-stdev1 = sqrt(sum(sum(sum(((I1-mean1).^2).*cellMask))));
-stdev2 = sqrt(sum(sum(sum(((I2-mean2).^2).*cellMask))));
+sum1 = sum(sum(sum(((I1-mean1).*cellMask).^2)));
+sum2 = sum(sum(sum(((I2-mean2).*cellMask).^2)));
 
 %calcluate the pearson correleation coefficient
-colocalization = covariance/(stdev1*stdev2);
+colocalization = covariance/sqrt(sum1*sum2);
 
 end
 
