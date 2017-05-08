@@ -37,5 +37,8 @@ i = C2(round(x/2),round(y/2),round(z/2));
 cellMask = double(C2 == i);
 SE = strel('sphere',5);
 cellMask  = imdilate(cellMask, SE);
+cellMask(:,:,1) = 0;
+cellMask(:,:,z) = 0;
 cellMask = imerode(cellMask,SE);
+cellMask = double(cellMask);
 end

@@ -7,9 +7,9 @@ function cellMask = refinemask(cellMask,amount)
 %Date: 2/14/17
 %Contact: colgan.william@gmail.com
 
-SE = strel('diamond',5);
+SE = strel('disk',5);
 cellMask = imdilate(cellMask, SE);
-SE = strel('diamond',round(5-amount));
+SE = strel('disk',round(5-amount));
 cellMask = imerode(cellMask, SE);
 
 end
