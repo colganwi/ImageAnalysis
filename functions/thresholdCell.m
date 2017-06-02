@@ -10,12 +10,19 @@ function cellMask = thresholdcell(C1,thresh,sigma)
 %Contact: colgan.william@gmail.com
 
 %make new channel and set threshold
-C2 = zeros(size(C1),'double'); %make a new image
+cellMask = zeros(size(C1),'double'); %make a new image
 thresh = multithresh(C1)*thresh*2; %set threshold
+numplanes = size(C1,3);
+
+%normalize the intensity in the z plane
+Y = reshape(mean(mean(C1)),[numplanes,1]);
+X = reshape(linspace(1,numplanes,numplanes),[numplanes,1]);
+b = X\Y;
 
 %for threshold each plane
-for i = 1:size(C1,3)
-    P = C1(:,:,i);
+for i = 1:numplanes
+    P = C1(:,:,i)*(1-i*b);
+    %P = C1(:,:,i);
     if(sigma > 0)
     P = imgaussfilt(P,sigma); %apply gaussfilt
     end
@@ -29,16 +36,22 @@ for i = 1:size(C1,3)
     P(x,:) = 0;
     P = imfill(P, 'holes'); %fill holes
     P = imerode(P,SE); %undo dilation
-    C2(:,:,i) = P;
+    cellMask(:,:,i) = P;
 end
-
-[x,y,z] = size(C2);
-i = C2(round(x/2),round(y/2),round(z/2));
-cellMask = double(C2 == i);
 SE = strel('sphere',5);
-cellMask  = imdilate(cellMask, SE);
-cellMask(:,:,1) = 0;
-cellMask(:,:,z) = 0;
 cellMask = imerode(cellMask,SE);
+cellMask = bwareaopen(cellMask,10000);
+cellMask  = imdilate(cellMask, SE);
 cellMask = double(cellMask);
+
+%visualize cell mask
+% figure;
+% p = patch(isosurface(cellMask));
+% p.FaceColor = 'red';
+% p.EdgeColor = 'none';
+% p.FaceAlpha = .5;
+% camlight;
+% lighting phong;
+
+
 end
