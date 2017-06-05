@@ -1,10 +1,11 @@
 function clippingPlane = makeplane2(C1,z,x1,y1,z1,r,flip)
-%This function calculates the pearson value intensity of 4 regions,
+%This function can be used to make a clipping plane for a slice of a 3D
+%image.
 %
-%   colocalization = pearson(C1,C2,cellMask)
+%   clippingPlane = makeplane2(C1,z,x1,y1,z1,r,flip)
 %
 %Author: William Colgan
-%Date: 2/14/17
+%Date: 6/2/17
 %Contact: colgan.william@gmail.com
 [x,y] = size(C1);
 clippingPlane = double(zeros(x,y));

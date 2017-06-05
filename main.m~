@@ -28,8 +28,8 @@ for i = 1:size(names,2)
         image(num) = name;
         [C1,C2,C3,voxelSize] = loadtif3(name);
         cellMask = loadtif1(strcat('mask_',name));
-        C1 = removebackground(C1,cellMask,1.7);
-        C2 = removebackground(C2,cellMask,1.7);
+        C1 = removebackground(C1,cellMask,1.5);
+        C2 = removebackground(C2,cellMask,1.5);
         [region1,region2,region3] = makeregions(cellMask,1,2,voxelSize);
         %Analyze whole:
         v = sum(sum(sum(cellMask)));
@@ -106,12 +106,12 @@ averagered2(32) = std(averagered2(1:num))/sqrt(num);
 averagegreen2(32) = std(averagegreen2(1:num))/sqrt(num);
 relativered2(32) = std(relativered2(1:num))/sqrt(num);
 relativegreen2(32) = std(relativegreen2(1:num))/sqrt(num);
-volume3(32) = std(volume3(1:num))/sqrt(num);
-coloc3(32) = std(coloc3(1:num))/sqrt(num);
-averagered3(32) = std(averagered3(1:num))/sqrt(num);
-averagegreen3(32) = std(averagegreen3(1:num))/sqrt(num);
-relativered3(32) = std(relativered3(1:num))/sqrt(num);
-relativegreen3(32) = std(relativegreen3(1:num))/sqrt(num);
+volume3(32) = std(volume3(1:num));
+coloc3(32) = std(coloc3(1:num));
+averagered3(32) = std(averagered3(1:num));
+averagegreen3(32) = std(averagegreen3(1:num));
+relativered3(32) = std(relativered3(1:num));
+relativegreen3(32) = std(relativegreen3(1:num));
 
 result = table(image,volume,coloc,averagered,averagegreen,volume1,volume2,volume3,coloc1,coloc2,coloc3,averagered1,averagered2,averagered3,averagegreen1,averagegreen2,averagegreen3,relativered1,relativered2,relativered3,relativegreen1,relativegreen2,relativegreen3);
 writetable(result,'data/analysis.xls');
