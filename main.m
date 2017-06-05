@@ -124,5 +124,3 @@ clear;
 % p.FaceAlpha = .5;
 % camlight;
 % lighting phong;
-
-
