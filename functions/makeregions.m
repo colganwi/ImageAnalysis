@@ -20,8 +20,8 @@ region1 = C - C1;
 region2 = C1 - C2;
 region3 = C2;
 
-region1 = imresize3(region1,[x,y,z]);
-region2 = imresize3(region2,[x,y,z]);
-region3 = imresize3(region3,[x,y,z]);
+region1 = imresize3(region1,[x,y,z],'nearest');
+region2 = imresize3(region2,[x,y,z],'nearest');
+region3 = imresize3(region3,[x,y,z],'nearest');
 
 end

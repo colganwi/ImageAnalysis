@@ -28,8 +28,8 @@ for i = 1:size(names,2)
         image(num) = name;
         [C1,C2,C3,voxelSize] = loadtif3(name);
         cellMask = loadtif1(strcat('mask_',name));
-        C1 = removebackground(C1,cellMask,1.7);
-        C2 = removebackground(C2,cellMask,1.7);
+%         C1 = removebackground(C1,cellMask,3);
+%         C2 = removebackground(C2,cellMask,3);
         [region1,region2,region3] = makeregions(cellMask,1,2,voxelSize);
         %Analyze whole:
         v = sum(sum(sum(cellMask)));
