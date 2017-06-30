@@ -25,7 +25,7 @@ sum1 = sum(sum(sum(((I1-mean1).*cellMask).^2)));
 sum2 = sum(sum(sum(((I2-mean2).*cellMask).^2)));
 
 %calcluate the pearson correleation coefficient
-colocalization = covariance/sqrt(sum1*sum2);
+colocalization = double(covariance/sqrt(sum1*sum2));
 
 end
 

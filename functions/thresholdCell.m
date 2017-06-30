@@ -11,7 +11,7 @@ function cellMask = thresholdcell(C1,thresh,sigma,b)
 
 %make new channel and set threshold
 cellMask = zeros(size(C1),'double'); %make a new image
-thresh = multithresh(C1)*thresh*2; %set threshold
+thresh = multithresh(C1)*thresh; %set threshold
 numplanes = size(C1,3);
 
 %normalize the intensity in the z plane
