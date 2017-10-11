@@ -11,8 +11,9 @@ function cellMask = watershedcell(C1,cellMask,sigma)
 
 SE = strel('sphere', 5);
 inside = imerode(cellMask,SE); %set the inside to 5 pixels less than mask
-SE = strel('sphere', 10);
-outside = 1 - imdilate(cellMask,SE); %set the outside to 10 pixels larger than mask
+%SE = strel('sphere', 10);
+%outside = 1 - imdilate(cellMask,SE); %set the outside to 10 pixels larger than mask
+outside = zeros(size(cellMask));
 
 %set the edges to 1
 [x,y,z] = size(outside);

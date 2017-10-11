@@ -11,7 +11,7 @@ function cellMask = thresholdcell(C1,thresh,sigma,b)
 
 %make new channel and set threshold
 cellMask = zeros(size(C1),'double'); %make a new image
-thresh = multithresh(C1)*thresh; %set threshold
+thresh = multithresh(C1)*thresh*2; % .5 set threshold
 numplanes = size(C1,3);
 
 %normalize the intensity in the z plane
@@ -38,9 +38,9 @@ for i = 1:numplanes
     P = imerode(P,SE); %undo dilation
     cellMask(:,:,i) = P;
 end
-SE = strel('sphere',5);
+SE = strel('sphere',2);%5
 cellMask = imerode(cellMask,SE);
-cellMask = bwareaopen(cellMask,10000);
+cellMask = bwareaopen(cellMask,10000);%100000
 cellMask  = imdilate(cellMask, SE);
 cellMask = double(cellMask);
 

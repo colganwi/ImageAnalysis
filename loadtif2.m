@@ -1,4 +1,4 @@
-function [C1,C2,C3,voxelSize] = loadtif3(filename)
+function [C1,C2,C3,voxelSize] = loadtif2(filename)
 %This funciton loads a 3 channel tif image given a filename. It returns the
 %channels as 3D double matrices and return the voxel size if the image has 
 %resolution data.
@@ -43,12 +43,7 @@ C3 = zeros(x,y,z,'double');
 
 %for each plane
 for i = 1:z
-   C2(:,:,i) = im2double(imread(filename,3*i-2)).*brightness;
-   C3(:,:,i) = im2double(imread(filename,3*i-1)).*brightness;
-   C1(:,:,i) = im2double(imread(filename,3*i)).*brightness;
+   C1(:,:,i) = im2double(imread(filename,2*i-i)).*brightness;
+   C2(:,:,i) = im2double(imread(filename,2*i-1)).*brightness;
 end
-% for i = 1:z
-%    C1(:,:,i) = im2double(imread(filename,2*i-i)).*brightness;
-%    C2(:,:,i) = im2double(imread(filename,2*i-1)).*brightness;
-% end
 end
