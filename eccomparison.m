@@ -1,7 +1,8 @@
-%Select the experimental folder then control folder
+%Select the control folder then experimental.
 
-epath = uigetdir('/Users/cionalab/Google Drive/William/Image Analysis');
 cpath = uigetdir('/Users/cionalab/Google Drive/William/Image Analysis');
+epath = uigetdir('/Users/cionalab/Google Drive/William/Image Analysis');
+
 
 types = {'whole','ventral','dorsal'};
 [selection,ok] = listdlg('ListString',types);
@@ -19,7 +20,7 @@ for i = 1:size(selection,2)
     enrichgreen3 = {c.enrichgreen3,e.enrichgreen3};
 
     makefigure4('Fractional overlap',{'Total','Membrane','Peripheral Cytoplasm','Deep Cytoplasm'},{[0,1],[0,1],[0,1],[0,1]},{'b','b','b','b'},overlap,overlap1,overlap2,overlap3);
-    makefigure4('FGFR enrichment',{'V/D Ratio','Membrane','Peripheral Cytoplasm','Deep Cytoplasm'},{[0,10],[0,2],[0,2],[0,2]},{'g','g','g','g'},vdratio,enrichgreen1,enrichgreen2,enrichgreen3);
+    makefigure4('FGFR enrichment',{'V/D Ratio','Membrane','Peripheral Cytoplasm','Deep Cytoplasm'},{[0,20],[0,2],[0,2],[0,2]},{'g','g','g','g'},vdratio,enrichgreen1,enrichgreen2,enrichgreen3);
 
     coverlap = [mean(c.overlap1),mean(c.overlap2),mean(c.overlap3)];
     cenrichment = [mean(c.enrichgreen1)/2,mean(c.enrichgreen2)/2,mean(c.enrichgreen3)/2];
