@@ -1,7 +1,10 @@
 %Select the Rab4,Rab7,Rab11
 apath = uigetdir('/Users/cionalab/Google Drive/William/Image Analysis');
+addpath(apath);
 bpath = uigetdir('/Users/cionalab/Google Drive/William/Image Analysis');
+addpath(bpath);
 cpath = uigetdir('/Users/cionalab/Google Drive/William/Image Analysis');
+addpath(cpath);
 
 types = {'whole','ventral','dorsal'};
 [selection,ok] = listdlg('ListString',types);

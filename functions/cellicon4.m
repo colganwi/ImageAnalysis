@@ -23,11 +23,11 @@ polarhistogram('BinEdges',[pi/4 3*pi/4 5*pi/4 7*pi/4 9*pi/4],'BinCounts',[0 0 0 
 polarhistogram('BinEdges',[pi/4 3*pi/4 5*pi/4 7*pi/4 9*pi/4],'BinCounts',[0 0 0 5],'FaceColor',getcolor(ax,c(2),color1),'FaceAlpha',1)
 polarhistogram('BinEdges',[pi/4 3*pi/4 5*pi/4 7*pi/4 9*pi/4],'BinCounts',[0 0 0 3],'FaceColor',getcolor(ax,c(3),color1),'FaceAlpha',1)
 %display colorbars
-colorbar(gca,'Ticks',[],'Location','westoutside');
+colorbar(gca,'TickLabels',{'0','0.075','0.15','0.225','0.3','0.375','.45','.525','.6','.675','.75'},'Location','westoutside');
 ax2 = axes;
 hold on;
 ax2.Visible = 'off';
 ax2.XTick = [];
 ax2.YTick = [];
 getcolor(ax2,.5,color2);
-colorbar(ax2,'Ticks',[],'Position',[.89 .11 .032 .815]);
+colorbar(ax2,'TickLabels',{'0','0.18','0.36','0.54','0.72','0.9','1.08','1.26','1.44','1.62','1.8'},'Position',[.89 .11 .032 .815]);

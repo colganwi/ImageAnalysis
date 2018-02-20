@@ -14,11 +14,11 @@ polarhistogram('BinEdges',[0 pi 2*pi],'BinCounts',[0 6],'FaceColor',getcolor(ax,
 polarhistogram('BinEdges',[0 pi 2*pi],'BinCounts',[0 5],'FaceColor',getcolor(ax,dist2(2),color2),'FaceAlpha',1)
 polarhistogram('BinEdges',[0 pi 2*pi],'BinCounts',[0 3],'FaceColor',getcolor(ax,dist2(3),color2),'FaceAlpha',1)
 %display colorbars
-colorbar(gca,'Ticks',[],'Location','westoutside');
+colorbar(gca,'TickLabels',{'0','0.18','0.36','0.54','0.72','0.9','1.08','1.26','1.44','1.62','1.8'},'Location','westoutside');
 ax2 = axes;
 hold on;
 ax2.Visible = 'off';
 ax2.XTick = [];
 ax2.YTick = [];
 getcolor(ax2,.5,color1);
-colorbar(ax2,'Ticks',[],'Position',[.89 .11 .032 .815]);
+colorbar(ax2,'TickLabels',{'0','0.075','0.15','0.225','0.3','0.375','.45','.525','.6','.675','.75'},'Position',[.89 .11 .032 .815]);

@@ -1,52 +1,53 @@
-[C1,C2,C3,voxelSize] = loadtif3('prophase1.tif');
-cellMask = loadtif1('mask_prophase1.tif');
+[C1,C2,C3,voxelSize] = loadtif3('image.tif');
+cellMask = loadtif1('mask.tif');
+
 % cellMask = flip(cellMask,3);
 % cellMask = flip(cellMask,2);
-%[region1,region2,region3] = makeregions(cellMask,1,2,voxelSize);
+
+
+% [region1,region2,region3] = makeregions(cellMask,1,3,voxelSize);
 % D = ones(size(cellMask));
-% D((1:150),(1:175),(1:50)) = 0;
+% D((115:end),(115:end),(1:31)) = 0;
 % D = flip(D,3);
 % D = flip(D,2);
+% savetif1(region1(:,:,31),'Region1.tif');
+% savetif1(region2(:,:,31),'Region2.tif');
+% savetif1(region3(:,:,31),'Region3.tif');
+% savetif1(bwperim(region1(:,:,31)),'Perim Region1.tif');
+% savetif1(bwperim(region2(:,:,31)),'Perim Region2.tif');
+% savetif1(bwperim(region3(:,:,31)),'Perim Region3.tif');
 % region1 = region1.*D;
 % region2 = region2.*D;
 % region3 = region3.*D;
 % p = patch(isosurface(region1));
-% p.FaceColor = 'magenta';
+% p.FaceColor = 'cyan';
 % p.EdgeColor = 'none';
 % p.FaceAlpha = 1;
 % hold on
 % p1 = patch(isosurface(region2));
-% p1.FaceColor = 'blue';
+% p1.FaceColor = [.6 0 1];
 % p1.EdgeColor = 'none';
 % p1.FaceAlpha = 1;
 % hold on
 % p2 = patch(isosurface(region3));
-% p2.FaceColor = 'green';
+% p2.FaceColor = [0.5 0.5 0.5];
 % p2.EdgeColor = 'none';
 % p2.FaceAlpha = 1;
-% 
-% 
-% camlight;
-% set(gca,'color','black')
-% lighting phong;
 
 
 C1 = C1.*cellMask;
 C2 = C2.*cellMask;
 C4 = imgaussfilt(C1,1);
-thresh = getthresh(C4,cellMask,90);
+thresh = getthresh(C4,cellMask,95);
 C4 = double(C4>thresh);
+savetif1(C4(:,:,94),'2D Rab.tif');
 C5 = imgaussfilt(C2,1);
-thresh = getthresh(C5,cellMask,90);
-maximum = max(max(max(C5)));
-C5(C5<thresh) = 0;
-C5 = (C5-thresh).*(1/(maximum-thresh));
-disp(max(max(max(C5))));
-savetif1(C5(:,:,62),'redtprophase1.tif');
+thresh = getthresh(C5,cellMask,95);
+C5 = double(C5>thresh);
+savetif1(C5(:,:,94),'2D FGF.tif');
 % C6 = C5.*C4;
 % C4 = C4.*cellMask;
 % C5 = C5.*cellMask;
-% disp(sum(sum(sum(C6)))/sum(sum(sum(C5))));
 % cellMask = flip(cellMask,3);
 % cellMask = flip(cellMask,2);
 % p = patch(isosurface(cellMask));
@@ -67,10 +68,31 @@ savetif1(C5(:,:,62),'redtprophase1.tif');
 % p2.FaceColor = 'green';
 % p2.EdgeColor = 'none';
 % p2.FaceAlpha = 1;
-% 
-% 
+
+
+
+
+
 % camlight;
-% set(gca,'color','black')
+% ax = gca;
+% ax.XAxis.Color = 'white';
+% ax.YAxis.Color = 'white';
+% ax.ZAxis.Color = 'white';
+% ax.LineWidth = 1.5;
+% ax.XTickLabel = {};
+% ax.YTickLabel = {};
+% ax.ZTickLabel = {};
+% ax.XGrid = 'on';
+% ax.YGrid = 'on';
+% ax.ZGrid = 'on';
+% ax.View = [225 20];
+% ax.Box = 'on';
+% 
+% set(gca,'color','black');
+% set(gcf,'color','black');
 % lighting phong;
+% camlight;
+%h = light;
+%h.Position = [-.9,1,.2];
 
 

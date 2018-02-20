@@ -18,7 +18,7 @@ y = info.Width;
 z = size(info,1)/3;
 
 %brightness
-brightness = 1;
+brightness = 16;
 %get voxel size
 xRes = info.XResolution;
 if isempty(xRes) %if it does not have resolution
@@ -31,10 +31,6 @@ else
     i = strfind(description,'spacing');
     zSize = str2double(description(i+8:i+16));
     voxelSize = [xSize,ySize,zSize];
-    i = strfind(description,'max');
-    if(str2double(description(i+4:i+8)) ~= 4095)
-        brightness = 1; %16
-    end 
 end
 %creat matrices for each channel
 C1 = zeros(x,y,z,'double');

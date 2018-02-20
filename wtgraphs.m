@@ -70,34 +70,58 @@ enrichgreen3 = {enrichgreen3pre,enrichgreen3pro,enrichgreen3meta,enrichgreen3ana
 makefigure3('WT FGFR distrubtion',{'Membrane','Peripheral Cytoplasm','Deep Cytoplasm'},[0,2],{'g','g','g'},enrichgreen1,enrichgreen2,enrichgreen3);
 
 %Make icons
-aFGFRpre = [mean(enrichgreen1pre)/2,mean(enrichgreen2pre)/2,mean(enrichgreen3pre)/2];
-aFGFRpro = [mean(enrichgreen1pro)/2,mean(enrichgreen2pro)/2,mean(enrichgreen3pro)/2];
-aFGFRmeta = [mean(enrichgreen1meta)/2,mean(enrichgreen2meta)/2,mean(enrichgreen3meta)/2];
-aFGFRana = [mean(enrichgreen1ana)/2,mean(enrichgreen2ana)/2,mean(enrichgreen3ana)/2];
-aFGFRpost = [mean(enrichgreen1post)/2,mean(enrichgreen2post)/2,mean(enrichgreen3post)/2];
+aFGFRpre = [mean(enrichgreen1pre)/1.8,mean(enrichgreen2pre)/1.8,mean(enrichgreen3pre)/1.8];
+aFGFRpro = [mean(enrichgreen1pro)/1.8,mean(enrichgreen2pro)/1.8,mean(enrichgreen3pro)/1.8];
+aFGFRmeta = [mean(enrichgreen1meta)/1.8,mean(enrichgreen2meta)/1.8,mean(enrichgreen3meta)/1.8];
+aFGFRana = [mean(enrichgreen1ana)/1.8,mean(enrichgreen2ana)/1.8,mean(enrichgreen3ana)/1.8];
+aFGFRpost = [mean(enrichgreen1post)/1.8,mean(enrichgreen2post)/1.8,mean(enrichgreen3post)/1.8];
 
-aOverlapRab4pre = [mean(wtrab4pre.overlap1),mean(wtrab4pre.overlap2),mean(wtrab4pre.overlap3)];
-aOverlapRab4pro = [mean(wtrab4pro.overlap1),mean(wtrab4pro.overlap2),mean(wtrab4pro.overlap3)];
-aOverlapRab4meta = [mean(wtrab4meta.overlap1),mean(wtrab4meta.overlap2),mean(wtrab4meta.overlap3)];
-aOverlapRab4ana = [mean(wtrab4ana.overlap1),mean(wtrab4ana.overlap2),mean(wtrab4ana.overlap3)];
-aOverlapRab4post = [mean(wtrab4post.overlap1),mean(wtrab4post.overlap2),mean(wtrab4post.overlap3)];
+aOverlapRab4pre = [mean(wtrab4pre.overlap1)/.75,mean(wtrab4pre.overlap2)/.75,mean(wtrab4pre.overlap3)/.75];
+aOverlapRab4pro = [mean(wtrab4pro.overlap1)/.75,mean(wtrab4pro.overlap2)/.75,mean(wtrab4pro.overlap3)/.75];
+aOverlapRab4meta = [mean(wtrab4meta.overlap1)/.75,mean(wtrab4meta.overlap2)/.75,mean(wtrab4meta.overlap3)/.75];
+aOverlapRab4ana = [mean(wtrab4ana.overlap1)/.75,mean(wtrab4ana.overlap2)/.75,mean(wtrab4ana.overlap3)/.75];
+aOverlapRab4post = [mean(wtrab4post.overlap1)/.75,mean(wtrab4post.overlap2)/.75,mean(wtrab4post.overlap3)/.75];
 
-aOverlapRab7pre = [mean(wtrab7pre.overlap1),mean(wtrab7pre.overlap2),mean(wtrab7pre.overlap3)];
-aOverlapRab7pro = [mean(wtrab7pro.overlap1),mean(wtrab7pro.overlap2),mean(wtrab7pro.overlap3)];
-aOverlapRab7meta = [mean(wtrab7meta.overlap1),mean(wtrab7meta.overlap2),mean(wtrab7meta.overlap3)];
-aOverlapRab7ana = [mean(wtrab7ana.overlap1),mean(wtrab7ana.overlap2),mean(wtrab7ana.overlap3)];
-aOverlapRab7post = [mean(wtrab7post.overlap1),mean(wtrab7post.overlap2),mean(wtrab7post.overlap3)];
+aOverlapRab7pre = [mean(wtrab7pre.overlap1)/.75,mean(wtrab7pre.overlap2)/.75,mean(wtrab7pre.overlap3)/.75];
+aOverlapRab7pro = [mean(wtrab7pro.overlap1)/.75,mean(wtrab7pro.overlap2)/.75,mean(wtrab7pro.overlap3)/.75];
+aOverlapRab7meta = [mean(wtrab7meta.overlap1)/.75,mean(wtrab7meta.overlap2)/.75,mean(wtrab7meta.overlap3)/.75];
+aOverlapRab7ana = [mean(wtrab7ana.overlap1)/.75,mean(wtrab7ana.overlap2)/.75,mean(wtrab7ana.overlap3)/.75];
+aOverlapRab7post = [mean(wtrab7post.overlap1)/.75,mean(wtrab7post.overlap2)/.75,mean(wtrab7post.overlap3)/.75];
 % 
-aOverlapRab11pre = [mean(wtrab11pre.overlap1),mean(wtrab11pre.overlap2),mean(wtrab11pre.overlap3)];
-aOverlapRab11pro = [mean(wtrab11pro.overlap1),mean(wtrab11pro.overlap2),mean(wtrab11pro.overlap3)];
-aOverlapRab11meta = [mean(wtrab11meta.overlap1),mean(wtrab11meta.overlap2),mean(wtrab11meta.overlap3)];
-aOverlapRab11ana = [mean(wtrab11ana.overlap1),mean(wtrab11ana.overlap2),mean(wtrab11ana.overlap3)];
-aOverlapRab11post = [mean(wtrab11post.overlap1),mean(wtrab11post.overlap2),mean(wtrab11post.overlap3)];
+aOverlapRab11pre = [mean(wtrab11pre.overlap1)/.75,mean(wtrab11pre.overlap2)/.75,mean(wtrab11pre.overlap3)/.75];
+aOverlapRab11pro = [mean(wtrab11pro.overlap1)/.75,mean(wtrab11pro.overlap2)/.75,mean(wtrab11pro.overlap3)/.75];
+aOverlapRab11meta = [mean(wtrab11meta.overlap1)/.75,mean(wtrab11meta.overlap2)/.75,mean(wtrab11meta.overlap3)/.75];
+aOverlapRab11ana = [mean(wtrab11ana.overlap1)/.75,mean(wtrab11ana.overlap2)/.75,mean(wtrab11ana.overlap3)/.75];
+aOverlapRab11post = [mean(wtrab11post.overlap1)/.75,mean(wtrab11post.overlap2)/.75,mean(wtrab11post.overlap3)/.75];
 
-cellicon4(aFGFRpre,aOverlapRab4pre,aOverlapRab7pre,aOverlapRab11pre,"WT Pre-mitotic",'fire','firegb');
-cellicon4(aFGFRpro,aOverlapRab4pro,aOverlapRab7pro,aOverlapRab11pro,"WT Prophase",'fire','firegb');
-cellicon4(aFGFRmeta,aOverlapRab4meta,aOverlapRab7meta,aOverlapRab11meta,"WT Metaphase",'fire','firegb');
-cellicon4(aFGFRana,aOverlapRab4ana,aOverlapRab7ana,aOverlapRab11ana,"WT Anaphase",'fire','firegb');
-cellicon4(aFGFRpost,aOverlapRab4post,aOverlapRab7post,aOverlapRab11post,"WT Post-mitotic",'fire','firegb');
+cellicon4(aFGFRpre,aOverlapRab4pre,aOverlapRab7pre,aOverlapRab11pre,"WT Pre-mitotic",'fire','green');
+cellicon4(aFGFRpro,aOverlapRab4pro,aOverlapRab7pro,aOverlapRab11pro,"WT Prophase",'fire','green');
+cellicon4(aFGFRmeta,aOverlapRab4meta,aOverlapRab7meta,aOverlapRab11meta,"WT Metaphase",'fire','green');
+cellicon4(aFGFRana,aOverlapRab4ana,aOverlapRab7ana,aOverlapRab11ana,"WT Anaphase",'fire','green');
+cellicon4(aFGFRpost,aOverlapRab4post,aOverlapRab7post,aOverlapRab11post,"WT Post-mitotic",'fire','green');
+
+cellicon1(aFGFRpre,"Pre-mitotic",'green');
+cellicon1(aFGFRpro,"Prophase",'green');
+cellicon1(aFGFRmeta,"Metaphase",'green');
+cellicon1(aFGFRana,"Anaphase",'green');
+cellicon1(aFGFRpost,"Post-mitotic",'green');
+
+cellicon1(aOverlapRab4pre,"Pre-mitotic Rab4",'magenta');
+cellicon1(aOverlapRab4pro,"Prophase Rab4",'magenta');
+cellicon1(aOverlapRab4meta,"Metaphase Rab4",'magenta');
+cellicon1(aOverlapRab4ana,"Anaphase Rab4",'magenta');
+cellicon1(aOverlapRab4post,"Post-mitotic Rab4",'magenta');
+
+cellicon1(aOverlapRab7pre,"Pre-mitotic Rab7",'orange');
+cellicon1(aOverlapRab7pro,"Prophase Rab7",'orange');
+cellicon1(aOverlapRab7meta,"Metaphase Rab7",'orange');
+cellicon1(aOverlapRab7ana,"Anaphase Rab7",'orange');
+cellicon1(aOverlapRab7post,"Post-mitotic Rab7",'orange');
+
+cellicon1(aOverlapRab11pre,"Pre-mitotic Rab11",'blue');
+cellicon1(aOverlapRab11pro,"Prophase Rab11",'blue');
+cellicon1(aOverlapRab11meta,"Metaphase Rab11",'blue');
+cellicon1(aOverlapRab11ana,"Anaphase Rab11",'blue');
+cellicon1(aOverlapRab11post,"Post-mitotic Rab11",'blue');
 
 clear;

@@ -29,6 +29,7 @@ overlap3 = zeros(n,1);
 for i = 1:n
     [C1,C2,C3,voxelSize] = loadtif3(image{i});
     names(i) = image{i};
+    disp(image{i});
     cellMask = loadtif1(strcat('mask_',image{i}));
     [region1,region2,region3] = makeregions(cellMask,1,3,voxelSize);
     %Slpit DV
@@ -71,11 +72,12 @@ for i = 1:n
     averagered(i) = sum(sum(sum(C1.*cellMaskA)))/vCellMask;
     averagegreen(i) = sum(sum(sum(C2.*cellMaskA)))/vCellMask;
     %Threshold red
-    C1 = imgaussfilt(C1,1);
+    C1 = imgaussfilt(C1,.1/voxelSize(1));
     thresh = getthresh(C1,cellMask,95);
     tC1 = double(C1>thresh);
     %Threshold green
-    C2 = imgaussfilt(C2,1);
+
+    
     thresh = getthresh(C2,cellMask,95);
     tC2 = double(C2>thresh);
     %enrichment green
