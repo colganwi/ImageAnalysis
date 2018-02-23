@@ -7,6 +7,11 @@ function savetif1(C1,filename)
 %Date: 4/4/17
 %Contact: colgan.william@gmail.com
 
+%delete existing file
+if exist(filename, 'file') == 2
+  delete(filename);
+end
+
 %for each plane
 for i = 1:size(C1,3)
    imwrite(C1(:,:,i),filename,'tif', 'WriteMode', 'append','Compression','none');

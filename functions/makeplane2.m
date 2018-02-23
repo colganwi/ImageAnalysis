@@ -8,16 +8,16 @@ function clippingPlane = makeplane2(C1,z,x1,y1,z1,r,flip)
 %Date: 6/2/17
 %Contact: colgan.william@gmail.com
 [x,y] = size(C1);
-clippingPlane = double(zeros(x,y));
+clippingPlane = ones(x,y);
 for i = 1:x
     for j = 1:y
         if flip == 1
             if(i*x1+j*y1+z*z1>r)
-                clippingPlane(i,j) = 1;
+                clippingPlane(i,j) = 0;
             end
         else
             if(i*x1+j*y1+z*z1<r)
-                clippingPlane(i,j) = 1;
+                clippingPlane(i,j) = 0;
             end
         end
     end

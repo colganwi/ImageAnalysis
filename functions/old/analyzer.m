@@ -1,1 +1,0 @@
-path = uigetdir('/Users/cionalab/Google Drive/William/Image Analysis');
