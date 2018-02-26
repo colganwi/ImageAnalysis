@@ -2,7 +2,7 @@ function cellMask = approximatecell(C1,radius)
 %This function returns an approximate cell mask. It is a sphere centered at
 %the center of the image.
 %
-%   cellMask = approcimatecell(C1)
+%   cellMask = approcimatecell(C1,radius)
 %
 %Author: William Colgan
 %Date: 4/8/17

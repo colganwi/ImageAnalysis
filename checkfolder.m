@@ -1,16 +1,19 @@
-%This program checks a folder of image to ensure that they are compatible
-%with the analyze.m. It automatically fixes depth, if teh depth of the 
+%This script checks a folder of image to ensure that they are compatible
+%with the analyze.m. It automatically fixes depth, if the depth of the 
 %mask does not match the depth of the image.
 %
 %Author: William Colgan
 %Date: 2/23/18
 %Contact: colgan.william@gmail.com
 
+%get the path for the folder
 path = uigetdir('/Users/cionalab/Google Drive/William/Image Analysis');
 addpath(path);
 filenames = dir(path);
 names = {filenames(:).name};
 image = {};
+
+%get the list of images
 for i = 1:size(names,2)
     name = names{i};
     [~,title,ext] = fileparts(name); 
@@ -19,6 +22,8 @@ for i = 1:size(names,2)
     end
 end
 n = size(image,2);
+
+%check that each image has a mask
 for i = 1:n
     [C1,C2,C3,voxelSize] = loadtif3(image{i});
     try

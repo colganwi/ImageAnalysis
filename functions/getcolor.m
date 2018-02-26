@@ -4,7 +4,7 @@ function rgb = getcolor(ax,num,name)
 if(num > 1)
     num = 1;
 end
-if strcmp(name,'color1')
+if strcmp(name,'ygb')
     color = [255,255,255;
     255,255,252;
     255,255,248;
@@ -262,7 +262,7 @@ if strcmp(name,'color1')
     0,0,4;
     0,0,0];
     color = color./255;
-elseif strcmp(name,'color2')
+elseif strcmp(name,'gbm')
     color = [255,255,255;
     252,255,254;
     248,255,252;

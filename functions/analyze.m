@@ -1,9 +1,14 @@
 function analysis = analyze(path,type)
-%This function analyzes a folder of images
+%This function analyzes a folder of images. It returns a struct of lists
+%containing the value for each image.
+%
+%   analysis = analyze(path,type)
 %
 %Author: William Colgan
 %Date: 9/15/17
 %Contact: colgan.william@gmail.com
+
+%get list of images to analyze
 filenames = dir(path);
 names = {filenames(:).name};
 image = {};
@@ -14,6 +19,8 @@ for i = 1:size(names,2)
         image = {image{:},name};
     end
 end
+
+%make lists
 n = size(image,2);
 names = string(zeros(n,1));
 averagered = zeros(n,1);
@@ -26,22 +33,25 @@ overlap = zeros(n,1);
 overlap1 = zeros(n,1);
 overlap2 = zeros(n,1);
 overlap3 = zeros(n,1);
+
+%for each image
 for i = 1:n
+    disp(image{i});
     [C1,C2,C3,voxelSize] = loadtif3(image{i});
     names(i) = image{i};
-    disp(image{i});
     cellMask = loadtif1(strcat('mask_',image{i}));
     [region1,region2,region3] = makeregions(cellMask,1,3,voxelSize);
-    %Slpit DV
+    %split DV
     l = sum(sum(cellMask));
     l = reshape(l,[size(l,3),1]);
-    k = round(COG(l));
+    k = round(cog(l));
     D = zeros(size(cellMask));
     D(:,:,(1:k)) = 1;
     V = zeros(size(cellMask));
     V(:,:,(k+1:end)) = 1;
     cellMaskD = cellMask.*D;
     cellMaskV = cellMask.*V;
+    %select region to analyze
     if strcmp(type,'ventral')
         region1 = region1.*V;
         region2 = region2.*V;
@@ -57,12 +67,6 @@ for i = 1:n
     else
         disp('Invalid Type')
     end
-    %Threhold out the DNA
-%     thresh = multithresh(C3);
-%     C3 = imgaussfilt(C3.*cellMask,1)*.5;
-%     tC3 = logical((C3>thresh).*(cellMask-region1));
-%     C1(tC3) = 0;
-%     C2(tC3) = 0;
     %Get Volumes
     vCellMask = sum(sum(sum(cellMaskA)));
     vRegion1 = sum(sum(sum(region1)));
@@ -76,8 +80,6 @@ for i = 1:n
     thresh = getthresh(C1,cellMask,95);
     tC1 = double(C1>thresh);
     %Threshold green
-
-    
     thresh = getthresh(C2,cellMask,95);
     tC2 = double(C2>thresh);
     %enrichment green
@@ -93,4 +95,7 @@ for i = 1:n
     overlap2(i) = sum(sum(sum(O.*region2)))/sum(sum(sum(tC2.*region2)));
     overlap3(i) = sum(sum(sum(O.*region3)))/sum(sum(sum(tC2.*region3)));
 end
-analysis = struct('image',names,'averagered',averagered,'averagegreen',averagegreen,'vdratio',vdratio,'enrichgreen1',enrichgreen1,'enrichgreen2',enrichgreen2,'enrichgreen3',enrichgreen3,'overlap',overlap,'overlap1',overlap1,'overlap2',overlap2,'overlap3',overlap3);
+analysis = struct('image',names,'averagered',averagered,'averagegreen', ...
+    averagegreen,'vdratio',vdratio,'enrichgreen1',enrichgreen1, ...
+    'enrichgreen2',enrichgreen2,'enrichgreen3',enrichgreen3,'overlap', ...
+    overlap,'overlap1',overlap1,'overlap2',overlap2,'overlap3',overlap3);
