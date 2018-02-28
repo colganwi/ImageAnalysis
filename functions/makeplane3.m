@@ -29,7 +29,7 @@ for i = -x2:x-x2-1
                 if(i*x1+j*y1+k*z1*4>r*r)
                     clippingPlane(i+x2+1,j+y2+1,k+z2+1) = 1;
                 end
-            elseif flip == -1 && r>0
+            elseif flip == -1 && r<0
                 if(i*x1+j*y1+k*z1*4>r*r)
                     clippingPlane(i+x2+1,j+y2+1,k+z2+1) = 1;
                 end
