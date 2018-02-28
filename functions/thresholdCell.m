@@ -40,7 +40,7 @@ for i = 1:numplanes
 end
 SE = strel('sphere',2);%5
 cellMask = imerode(cellMask,SE);
-cellMask = bwareaopen(cellMask,100000);%100000
+cellMask = bwareaopen(cellMask,200000);%100000
 cellMask  = imdilate(cellMask, SE);
 cellMask = double(cellMask);
 

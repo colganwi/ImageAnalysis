@@ -44,7 +44,7 @@ for i = 1:n
     %split DV
     l = sum(sum(cellMask));
     l = reshape(l,[size(l,3),1]);
-    k = round(cog(l));
+    k = round(COG(l));
     D = zeros(size(cellMask));
     D(:,:,(1:k)) = 1;
     V = zeros(size(cellMask));

@@ -20,13 +20,5 @@ cellMask  = imdilate(cellMask, SE);
 SE = strel('sphere',5);
 cellMask = imerode(cellMask,SE);
 cellMask = double(cellMask);
-
-figure;
-p = patch(isosurface(cellMask));
-p.FaceColor = 'red';
-p.EdgeColor = 'none';
-p.FaceAlpha = .5;
-camlight;
-lighting phong;
 end
 
