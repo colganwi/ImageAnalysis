@@ -80,6 +80,7 @@ for i = 1:n
     thresh = getthresh(C1,cellMask,95);
     tC1 = double(C1>thresh);
     %Threshold green
+    C2 = imgaussfilt(C2,.1/voxelSize(1));
     thresh = getthresh(C2,cellMask,95);
     tC2 = double(C2>thresh);
     %enrichment green
