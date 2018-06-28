@@ -28,7 +28,11 @@ averagegreen = zeros(n,1);
 enrichgreen1 = zeros(n,1);
 enrichgreen2 = zeros(n,1);
 enrichgreen3 = zeros(n,1);
-vdratio = zeros(n,1);
+vdratiogreen = zeros(n,1);
+enrichred1 = zeros(n,1);
+enrichred2 = zeros(n,1);
+enrichred3 = zeros(n,1);
+vdratiored = zeros(n,1);
 overlap = zeros(n,1);
 overlap1 = zeros(n,1);
 overlap2 = zeros(n,1);
@@ -88,15 +92,24 @@ for i = 1:n
     enrichgreen1(i) = sum(sum(sum(tC2.*region1)))/vRegion1/g;
     enrichgreen2(i) = sum(sum(sum(tC2.*region2)))/vRegion2/g;
     enrichgreen3(i) = sum(sum(sum(tC2.*region3)))/vRegion3/g;
-    vdratio(i) = sum(sum(sum(tC2.*cellMaskV)))/sum(sum(sum(tC2.*cellMaskD)));
+    vdratiogreen(i) = sum(sum(sum(tC2.*cellMaskV)))/sum(sum(sum(tC2.*cellMaskD)));
+    %enrichment red
+    r = sum(sum(sum(tC1.*cellMaskA)))/vCellMask;
+    enrichred1(i) = sum(sum(sum(tC1.*region1)))/vRegion1/r;
+    enrichred2(i) = sum(sum(sum(tC1.*region2)))/vRegion2/r;
+    enrichred3(i) = sum(sum(sum(tC1.*region3)))/vRegion3/r;
+    vdratiored(i) = sum(sum(sum(tC1.*cellMaskV)))/sum(sum(sum(tC1.*cellMaskD)));
     %Get fractional overlap
     O = tC1.*tC2;
     overlap(i) = sum(sum(sum(O.*cellMaskA)))/sum(sum(sum(tC2.*cellMaskA)));
     overlap1(i) = sum(sum(sum(O.*region1)))/sum(sum(sum(tC2.*region1)));
     overlap2(i) = sum(sum(sum(O.*region2)))/sum(sum(sum(tC2.*region2)));
     overlap3(i) = sum(sum(sum(O.*region3)))/sum(sum(sum(tC2.*region3)));
+    
 end
 analysis = struct('image',names,'averagered',averagered,'averagegreen', ...
-    averagegreen,'vdratio',vdratio,'enrichgreen1',enrichgreen1, ...
+    averagegreen,'vdratiored',vdratiored,'enrichred1',enrichred1, ...
+    'enrichred2',enrichred2,'enrichred3',enrichred3,'vdratiogreen', ...
+        vdratiogreen,'enrichgreen1',enrichgreen1, ...
     'enrichgreen2',enrichgreen2,'enrichgreen3',enrichgreen3,'overlap', ...
     overlap,'overlap1',overlap1,'overlap2',overlap2,'overlap3',overlap3);
