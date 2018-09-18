@@ -27,7 +27,7 @@ The **analysis** script applies a function to a folder of images and saves the r
 Different functions can easily be written to analyze cells in different ways.
 
 ## Visualization
-This repository also includes code for visualizing enrichment and fractional overlap. The **overlap** script generates a circular heatmap that represents the average fractional overlap for a set of cells.
+This repository also includes code for visualizing enrichment and fractional overlap. The **distribution** script generates a circular heatmap that represents the average fractional overlap for a set of cells.
 
 <img src="https://github.com/colganwi/ImageAnalysis/blob/master/instructions/HeatMap.png" width="480">
 
